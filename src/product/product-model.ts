@@ -41,10 +41,11 @@ export class Product {
   @Prop({ required: true })
   tags: string;
 
-  @Prop({ required: true, type: Object })
+  @Prop({ required: true, type: [{ name: String, value: String }] })
   characteristics: {
-    [key: string]: string;
-  };
+    name: string;
+    value: string;
+  }[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

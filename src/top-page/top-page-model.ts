@@ -22,6 +22,9 @@ export class TopPage {
   secondCategory: string;
 
   @Prop({ required: true })
+  alias: string;
+
+  @Prop({ required: true })
   title: string;
 
   @Prop({ required: true })
@@ -29,10 +32,10 @@ export class TopPage {
 
   @Prop({
     type: {
-      count: { type: Number },
-      juniorSalary: { type: Number },
-      middleSalary: { type: Number },
-      seniorSalary: { type: Number },
+      count: Number,
+      juniorSalary: Number,
+      middleSalary: Number,
+      seniorSalary: Number,
     },
   })
   hh?: {

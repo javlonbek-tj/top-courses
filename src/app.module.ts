@@ -11,9 +11,6 @@ import { getMongoConfig } from './configs/mongo.config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://tjdeveloper:nestjs0103@cluster0.9asww1r.mongodb.net/',
-    ),
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
