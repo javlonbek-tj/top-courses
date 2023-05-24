@@ -15,11 +15,13 @@ export class ReviewService {
   }
 
   delete(id: string): Promise<Review> | null {
-    return this.reviewModel.findByIdAndDelete(id);
+    return this.reviewModel.findByIdAndDelete(id).exec();
   }
 
   findByProdId(prodId: string): Promise<Review[]> {
-    return this.reviewModel.find({ productId: new Types.ObjectId(prodId) });
+    return this.reviewModel
+      .find({ productId: new Types.ObjectId(prodId) })
+      .exec();
   }
 
   async deleteByProdId(prodId: string) {
