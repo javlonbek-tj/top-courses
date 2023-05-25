@@ -8,7 +8,9 @@ import {
   NotFoundException,
   Param,
   Post,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/users/guards/jwt.guard';
 
 @Controller('review')
 export class ReviewController {

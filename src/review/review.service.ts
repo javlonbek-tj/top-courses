@@ -14,7 +14,10 @@ export class ReviewService {
     return this.reviewModel.create(dto);
   }
 
-  delete(id: string): Promise<Review> | null {
+  delete(id: string): Promise<Review | null> {
+    if (!id) {
+      return null;
+    }
     return this.reviewModel.findByIdAndDelete(id).exec();
   }
 

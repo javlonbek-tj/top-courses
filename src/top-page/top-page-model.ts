@@ -12,9 +12,6 @@ export type ReviewDocument = HydratedDocument<TopPage>;
 
 @Schema()
 export class TopPage {
-  @Prop({ required: true })
-  _id: string;
-
   @Prop({ required: true, enum: TopLevelCategory })
   firstCategory: TopLevelCategory;
 
