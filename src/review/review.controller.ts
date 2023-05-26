@@ -10,7 +10,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/users/guards/jwt.guard';
+import { JwtAuthGuard } from '../users/guards/jwt.guard';
 
 @Controller('review')
 export class ReviewController {
@@ -25,6 +25,7 @@ export class ReviewController {
     return this.reviewService.findByProdId(prodId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   async deleteReview(@Param('id') id: string) {
     const review = await this.reviewService.delete(id);

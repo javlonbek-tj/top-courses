@@ -29,7 +29,7 @@ describe('ReviewService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should finds reviews by productId', async () => {
+  it('should find reviews by productId', async () => {
     const id = new Types.ObjectId().toHexString();
     reviewRepositoryFactory()
       .find()

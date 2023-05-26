@@ -1,3 +1,4 @@
+import { CreateUserDto } from './../src/users/dtos/create.user.dto';
 import { CreateReviewDto } from './../src/review/dtos/create-review.dto';
 import { Types, disconnect } from 'mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -6,6 +7,11 @@ import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 
 const productId = new Types.ObjectId().toHexString();
+
+const signinDto: CreateUserDto = {
+  email: 'test@.com',
+  password: '1',
+};
 
 const testDto: CreateReviewDto = {
   name: 'Name',
@@ -18,6 +24,7 @@ const testDto: CreateReviewDto = {
 describe('Review Controller (e2e)', () => {
   let app: INestApplication;
   let createdId: string;
+  let token: string;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -26,6 +33,11 @@ describe('Review Controller (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    const { body } = await request(app.getHttpServer())
+      .post('/auth/signin')
+      .send(signinDto);
+    token = body.access_token;
   });
 
   it('/review (POST) - success', async () => {
@@ -67,6 +79,7 @@ describe('Review Controller (e2e)', () => {
   it('/review/:id (DELETE) - success', () => {
     return request(app.getHttpServer())
       .delete('/review/' + createdId)
+      .set('Authorization', 'Bearer ' + token)
       .then(() => {
         expect(200);
       });
@@ -75,6 +88,7 @@ describe('Review Controller (e2e)', () => {
   it('/review/:id (DELETE) - fail', () => {
     return request(app.getHttpServer())
       .delete('/review/' + new Types.ObjectId().toHexString())
+      .set('Authorization', 'Bearer ' + token)
       .then(() => {
         expect(404);
       });

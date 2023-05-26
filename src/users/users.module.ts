@@ -15,12 +15,12 @@ import { PassportModule } from '@nestjs/passport';
   providers: [UsersService, AuthService, JwtStrategy],
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: getJwtConfig,
     }),
-    ConfigModule,
     PassportModule,
   ],
 })

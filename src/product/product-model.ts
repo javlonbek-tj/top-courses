@@ -3,6 +3,14 @@ import { HydratedDocument } from 'mongoose';
 
 export type ProductDocument = HydratedDocument<Product>;
 
+class ProductCharacteristicDto {
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ required: true })
+  value: string;
+}
+
 @Schema()
 export class Product {
   @Prop({ required: true })
@@ -14,8 +22,8 @@ export class Product {
   @Prop({ required: true })
   price: number;
 
-  @Prop({ required: true })
-  oldPrice: number;
+  @Prop()
+  oldPrice?: number;
 
   @Prop({ required: true })
   credit: number;
@@ -35,14 +43,11 @@ export class Product {
   @Prop([String])
   categories: string[];
 
-  @Prop({ required: true })
-  tags: string;
+  @Prop([String])
+  tags: string[];
 
-  @Prop({ required: true, type: [{ name: String, value: String }] })
-  characteristics: {
-    name: string;
-    value: string;
-  }[];
+  @Prop({ required: true, type: [ProductCharacteristicDto] })
+  characteristics: ProductCharacteristicDto[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
