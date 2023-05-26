@@ -13,9 +13,6 @@ export class UsersService {
   }
 
   findOne(id: string): Promise<User | null> {
-    if (!id) {
-      return null;
-    }
     return this.userModel.findById(id).exec();
   }
 

@@ -8,6 +8,31 @@ export enum TopLevelCategory {
   Products,
 }
 
+export class HhData {
+  @Prop()
+  count: number;
+
+  @Prop()
+  juniorSalary: number;
+
+  @Prop()
+  middleSalary: number;
+
+  @Prop()
+  seniorSalary: number;
+
+  @Prop()
+  updatedAt: Date;
+}
+
+export class TopPageAdvantage {
+  @Prop()
+  title: string;
+
+  @Prop()
+  description: string;
+}
+
 export type ReviewDocument = HydratedDocument<TopPage>;
 
 @Schema()
@@ -27,26 +52,11 @@ export class TopPage {
   @Prop({ required: true })
   category: string;
 
-  @Prop({
-    type: {
-      count: Number,
-      juniorSalary: Number,
-      middleSalary: Number,
-      seniorSalary: Number,
-    },
-  })
-  hh?: {
-    count: number;
-    juniorSalary: number;
-    middleSalary: number;
-    seniorSalary: number;
-  };
+  @Prop({ type: HhData })
+  hh?: HhData;
 
-  @Prop({ required: true, type: [{ title: String, description: String }] })
-  advantages: {
-    title: string;
-    description: string;
-  }[];
+  @Prop({ required: true, type: [TopPageAdvantage] })
+  advantages: TopPageAdvantage[];
 
   @Prop({ required: true })
   seoText: string;

@@ -3,6 +3,7 @@ import { Review, ReviewDocument } from './review-model';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
+import { REVIEW_NOT_FOUND_ERROR } from './review.constants';
 
 @Injectable()
 export class ReviewService {
@@ -15,9 +16,6 @@ export class ReviewService {
   }
 
   delete(id: string): Promise<Review | null> {
-    if (!id) {
-      return null;
-    }
     return this.reviewModel.findByIdAndDelete(id).exec();
   }
 
@@ -32,7 +30,7 @@ export class ReviewService {
       prodId: new Types.ObjectId(prodId),
     });
     if (deletedResult.deletedCount === 0) {
-      throw new NotFoundException('Review with the given productId not Found');
+      throw new NotFoundException(REVIEW_NOT_FOUND_ERROR);
     }
     return deletedResult;
   }

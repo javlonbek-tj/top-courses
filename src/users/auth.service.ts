@@ -7,6 +7,11 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import {
+  INVALID_PASSWORD_ERROR,
+  USER_IN_USE_ERROR,
+  USER_NOT_FOUND_ERROR,
+} from './auth.constants';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +25,7 @@ export class AuthService {
     const users = await this.usersService.find(email);
 
     if (users.length) {
-      throw new BadRequestException('User in use');
+      throw new BadRequestException(USER_IN_USE_ERROR);
     }
     // Generate salt and hash the password
     const salt = await genSalt(10);
@@ -37,12 +42,12 @@ export class AuthService {
   ): Promise<Pick<User, 'email'>> {
     const [user] = await this.usersService.find(email);
     if (!user) {
-      throw new UnauthorizedException('User not Found');
+      throw new UnauthorizedException(USER_NOT_FOUND_ERROR);
     }
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new UnauthorizedException('Invalid password');
+      throw new UnauthorizedException(INVALID_PASSWORD_ERROR);
     }
     return { email: user.email };
   }

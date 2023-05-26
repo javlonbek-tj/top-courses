@@ -18,16 +18,10 @@ export class ProductService {
   }
 
   findById(id: string): Promise<Product | null> {
-    if (!id) {
-      return null;
-    }
     return this.productModel.findById(id).exec();
   }
 
   deleteById(id: string): Promise<Product | null> {
-    if (!id) {
-      return null;
-    }
     return this.productModel.findByIdAndDelete(id).exec();
   }
 
