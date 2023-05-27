@@ -35,8 +35,8 @@ export class TopPageService {
       .exec();
   }
 
-  async findByPartial(search: string) {
-    const regex = new RegExp(search, 'i');
+  async findByPartial(text: string) {
+    const regex = new RegExp(text, 'i');
     return this.topPageModel
       .find({ $or: [{ title: regex }, { category: regex }] })
       .exec();

@@ -78,7 +78,7 @@ export class TopPageController {
   }
 
   @Get()
-  async findByPartial(@Query('search') search: string) {
-    return this.topPageService.findByPartial(search);
+  async findByPartial(@Query('text') text: string) {
+    return this.topPageService.findByPartial(text);
   }
 }
