@@ -3,8 +3,8 @@ POST http://localhost:3000/api/auth/signup
 content-type: application/json
 
 {
-    "email": "test@gmail.com",
-    "password": "46464646"
+    "email": "test2@gmail.com",
+    "password": "1234"
 }
 
 ### Sign in user
@@ -12,10 +12,31 @@ POST http://localhost:3000/api/auth/signin
 content-type: application/json
 
 {
-    "email": "test@gmail.com",
-    "password": "46464646"
+    "email": "test2@gmail.com",
+    "password": "1234"
 }
 
 ### Get all Users by email
 GET http://localhost:3000/api/auth/users?email=test@gmail.com
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjg1MDgyMTg1LCJleHAiOjE2ODUxNjg1ODV9.AeaAEMpYGnO84N5Q8LClJHrSqZHI57CZqrKYjatYrTE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTE3OTczOSwiZXhwIjoxNjg1MjY2MTM5fQ.g7Uh_7oqvPTZYAXnYKOzFCb5eQPE9zM_6XsfXgBa6IA
+
+### Create a new product
+POST http://localhost:3000/api/top-page
+content-type: application/json
+
+{
+   "firstCategory": 1,
+  "secondCategory": "Графический дизайн",
+  "alias": "photoshop-alias",
+  "title": "Photoshop",
+  "category": "photoshop",
+  "seoText": "Тест",
+  "tagsTitle": "Заголвок",
+  "advantages": [
+    {
+      "title": "1",
+      "description": "Опсиание 1"
+    }
+  ],
+  "tags": ["Learn photoshop"]
+}

@@ -34,7 +34,6 @@ export class ReviewController {
     if (!review) {
       throw new NotFoundException(REVIEW_NOT_FOUND_ERROR);
     }
-    return review;
   }
 
   @Delete('/:prodId')

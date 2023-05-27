@@ -1,8 +1,7 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { IsEnum } from 'class-validator';
 import { TopLevelCategory } from '../top-page-model';
 
-@Schema()
 export class FindTopPageDto {
-  @Prop({ required: true })
+  @IsEnum(TopLevelCategory)
   firstCategory: TopLevelCategory;
 }

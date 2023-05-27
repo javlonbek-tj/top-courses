@@ -62,8 +62,7 @@ export class CreateTopPageDto {
   @IsString()
   tagsTitle: string;
 
-  @IsString()
-  @ValidateNested()
   @IsArray()
+  @IsString({ each: true })
   tags: string[];
 }

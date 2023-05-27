@@ -33,7 +33,7 @@ export class TopPageAdvantage {
   description: string;
 }
 
-export type ReviewDocument = HydratedDocument<TopPage>;
+export type TopPageDocument = HydratedDocument<TopPage>;
 
 @Schema()
 export class TopPage {
@@ -55,7 +55,7 @@ export class TopPage {
   @Prop({ type: HhData })
   hh?: HhData;
 
-  @Prop({ required: true, type: [TopPageAdvantage] })
+  @Prop({ required: true, type: () => [TopPageAdvantage] })
   advantages: TopPageAdvantage[];
 
   @Prop({ required: true })
