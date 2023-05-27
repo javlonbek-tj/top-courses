@@ -22,14 +22,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQ
 
 ### Create a new top-page
 POST http://localhost:3000/api/top-page
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTE3OTczOSwiZXhwIjoxNjg1MjY2MTM5fQ.g7Uh_7oqvPTZYAXnYKOzFCb5eQPE9zM_6XsfXgBa6IA
 content-type: application/json
 
 {
-   "firstCategory": 1,
+   "firstCategory": 3,
   "secondCategory": "Графический дизайн",
   "alias": "photoshop-alias",
-  "title": "Photoshop",
-  "category": "photoshop",
+  "title": "TypeScript",
+  "category": "typescript",
   "seoText": "Тест",
   "tagsTitle": "Заголвок",
   "advantages": [
@@ -43,8 +44,13 @@ content-type: application/json
 
 ### Update top-page by id
 PATCH http://localhost:3000/api/top-page/6471d2af0a156382983d526d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTE5OTAxNSwiZXhwIjoxNjg1Mjg1NDE1fQ.TcvxJhpzhd_v4vbhLGFtoU2eLYfX0AloCt4n-5X6V1w
 content-type: application/json
 
 {
-    "firstCategory": 0
+    "firstCategory": 1
 }
+
+### Search by text
+GET http://localhost:3000/api/top-page/?search=гра
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTE5OTAxNSwiZXhwIjoxNjg1Mjg1NDE1fQ.TcvxJhpzhd_v4vbhLGFtoU2eLYfX0AloCt4n-5X6V1w

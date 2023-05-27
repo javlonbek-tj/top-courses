@@ -1,4 +1,3 @@
-import { Review } from './../review/review-model';
 import { FindProductDto } from './dtos/find-product.dto';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { Product, ProductDocument } from './product-model';

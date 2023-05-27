@@ -1,3 +1,5 @@
+import { JwtAuthGuard } from './../users/guards/jwt.guard';
+import { UpdateTopPageDto } from './dtos/update-top-page.dto';
 import { TOP_PAGE_NOT_FOUND_ERROR } from './top-page.constants';
 import { IdValidationPipe } from './../pipes/id-validation.pipe';
 import { CreateTopPageDto } from './dtos/create-top-page.dto';
@@ -12,16 +14,17 @@ import {
   Param,
   Patch,
   Post,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 import { FindTopPageDto } from './dtos/find-top-page.dto';
-import { TopPage } from './top-page-model';
 
 @Controller('top-page')
+@UseGuards(JwtAuthGuard)
 export class TopPageController {
   constructor(private readonly topPageService: TopPageService) {}
   @Post()
   async create(@Body() dto: CreateTopPageDto) {
-    console.log(dto);
     return this.topPageService.create(dto);
   }
 
@@ -54,7 +57,7 @@ export class TopPageController {
   @Patch('/:id')
   async update(
     @Param('id', IdValidationPipe) id: string,
-    @Body() dto: TopPage,
+    @Body() dto: UpdateTopPageDto,
   ) {
     const updatedTopPage = await this.topPageService.updateById(id, dto);
     if (!updatedTopPage) {
@@ -64,8 +67,18 @@ export class TopPageController {
   }
 
   @HttpCode(200)
-  @Post('find')
+  @Post('find') // It does not satisfy REST rules
   find(@Body() dto: FindTopPageDto) {
     return this.topPageService.findByCategory(dto.firstCategory);
+  }
+
+  @Get('textSearch/:text')
+  async textSearch(@Param('text') text: string) {
+    return this.topPageService.findByText(text);
+  }
+
+  @Get()
+  async findByPartial(@Query('search') search: string) {
+    return this.topPageService.findByPartial(search);
   }
 }
