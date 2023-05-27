@@ -6,17 +6,17 @@ import { Model } from 'mongoose';
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
-  create(email: string, password: string): Promise<User> {
+  create(email: string, password: string) {
     const newUser = new this.userModel({ email, password });
 
     return newUser.save();
   }
 
-  findOne(id: string): Promise<User | null> {
+  findOne(id: string) {
     return this.userModel.findById(id).exec();
   }
 
-  find(email: string): Promise<User[]> {
+  find(email: string) {
     return this.userModel.find({ email }).exec();
   }
 

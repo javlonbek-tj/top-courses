@@ -20,7 +20,7 @@ content-type: application/json
 GET http://localhost:3000/api/auth/users?email=test@gmail.com
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTE3OTczOSwiZXhwIjoxNjg1MjY2MTM5fQ.g7Uh_7oqvPTZYAXnYKOzFCb5eQPE9zM_6XsfXgBa6IA
 
-### Create a new product
+### Create a new top-page
 POST http://localhost:3000/api/top-page
 content-type: application/json
 
@@ -39,4 +39,12 @@ content-type: application/json
     }
   ],
   "tags": ["Learn photoshop"]
+}
+
+### Update top-page by id
+PATCH http://localhost:3000/api/top-page/6471d2af0a156382983d526d
+content-type: application/json
+
+{
+    "firstCategory": 0
 }

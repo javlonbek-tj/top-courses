@@ -13,19 +13,19 @@ export class ProductService {
     private readonly productModel: Model<ProductDocument>,
   ) {}
 
-  create(@Body() dto: CreateProductDto): Promise<Product> {
+  create(@Body() dto: CreateProductDto) {
     return this.productModel.create(dto);
   }
 
-  findById(id: string): Promise<Product | null> {
+  findById(id: string) {
     return this.productModel.findById(id).exec();
   }
 
-  deleteById(id: string): Promise<Product | null> {
+  deleteById(id: string) {
     return this.productModel.findByIdAndDelete(id).exec();
   }
 
-  updateById(id: string, dto: Partial<Product>): Promise<Product | null> {
+  updateById(id: string, dto: Partial<Product>) {
     return this.productModel.findByIdAndUpdate(id, dto, { new: true });
   }
 

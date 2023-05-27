@@ -11,29 +11,29 @@ export class TopPageService {
     private readonly topPageModel: Model<TopPageDocument>,
   ) {}
 
-  create(@Body() dto: CreateTopPageDto): Promise<TopPage> {
+  create(@Body() dto: CreateTopPageDto) {
     return this.topPageModel.create(dto);
   }
 
-  findById(id: string): Promise<TopPage | null> {
+  findById(id: string) {
     return this.topPageModel.findById(id).exec();
   }
 
-  findByIdAlias(alias: string): Promise<TopPage | null> {
+  findByIdAlias(alias: string) {
     return this.topPageModel.findOne({ alias }).exec();
   }
 
-  findByCategory(firstCategory: TopLevelCategory): Promise<TopPage[] | null> {
+  findByCategory(firstCategory: TopLevelCategory) {
     return this.topPageModel
       .find({ firstCategory }, { alias: 1, secondCategory: 1, title: 1 })
       .exec();
   }
 
-  deleteById(id: string): Promise<TopPage | null> {
+  deleteById(id: string) {
     return this.topPageModel.findByIdAndDelete(id).exec();
   }
 
-  updateById(id: string, dto: Partial<TopPage>): Promise<TopPage | null> {
+  updateById(id: string, dto: Partial<CreateTopPageDto>) {
     return this.topPageModel.findByIdAndUpdate(id, dto, { new: true }).exec();
   }
 }

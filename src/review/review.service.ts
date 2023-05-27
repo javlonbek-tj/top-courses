@@ -11,15 +11,15 @@ export class ReviewService {
     @InjectModel(Review.name) private reviewModel: Model<ReviewDocument>,
   ) {}
 
-  create(dto: CreateReviewDto): Promise<Review> {
+  create(dto: CreateReviewDto) {
     return this.reviewModel.create(dto);
   }
 
-  delete(id: string): Promise<Review | null> {
+  delete(id: string) {
     return this.reviewModel.findByIdAndDelete(id).exec();
   }
 
-  findByProdId(prodId: string): Promise<Review[]> {
+  findByProdId(prodId: string) {
     return this.reviewModel
       .find({ productId: new Types.ObjectId(prodId) })
       .exec();
