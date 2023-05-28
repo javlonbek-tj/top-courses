@@ -9,6 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { getMongoConfig } from './configs/mongo.config';
 import { APP_PIPE } from '@nestjs/core';
 import { UsersModule } from './users/users.module';
+import { FileModule } from './file/file.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { UsersModule } from './users/users.module';
     TopPageModule,
     ReviewModule,
     UsersModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [
