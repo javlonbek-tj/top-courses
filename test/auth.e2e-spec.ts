@@ -38,7 +38,7 @@ describe('AuthController (e2e)', () => {
       .send({ ...signinDto, email: 'aaa@a.ru' })
       .expect(401, {
         statusCode: 401,
-        message: 'User not Found',
+        message: 'User with this email not Found',
         error: 'Unauthorized',
       });
   });

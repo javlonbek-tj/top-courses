@@ -52,10 +52,10 @@ export class AuthService {
     return { email: user.email };
   }
 
-  signin(email: string) {
+  async signin(email: string) {
     const payload = { email };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: await this.jwtService.signAsync(payload),
     };
   }
 }
