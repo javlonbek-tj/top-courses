@@ -64,7 +64,7 @@ export class TopPage {
   @Prop({ required: true })
   tagsTitle: string;
 
-  @Prop([String])
+  @Prop({ type: () => [String] })
   tags: string[];
 }
 
