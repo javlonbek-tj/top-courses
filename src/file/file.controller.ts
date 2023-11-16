@@ -7,7 +7,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from 'src/users/guards/jwt.guard';
+import { JwtAuthGuard } from '../users/guards/jwt.guard';
 import { FileElementResponse } from './dto/file-element-response';
 import { FileService } from './file.service';
 import { Mfile } from './mfile.class';

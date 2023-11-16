@@ -46,7 +46,7 @@ export class TopPage {
   @Prop({ required: true })
   alias: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   title: string;
 
   @Prop({ required: true })
